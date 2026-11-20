@@ -1,0 +1,203 @@
+ADDENDUM A1 (post-hoc deviation): RandTrig and RFF = p-1 random features + constant column. Registered result: report_T2T3.txt
+====================================================================================================
+QR1  (10 readout features; controls of size 10)
+====================================================================================================
+
+T2a  test MSE over 100 instances: median 0.1094, 5-95% [0.1051, 0.1136], min 0.1032, max 0.1142
+     authors' instance 1: MSE 0.1051, rank 5 of 100
+     AR3 test MSE 0.1181; instances beating it: 100 / 100
+     HAR test MSE 0.1156; instances beating it: 100 / 100
+     validation-selected instance 51: test MSE 0.1064; test-selected instance 90: 0.1032
+
+--- loss: primary ---
+
+T2b honest selection
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs AR3                             0.9006 [0.8011, 0.9972]   0.0613   0.1227  inconclusive
+QR_val vs HAR                             0.9202 [0.8215, 1.0208]   0.1350   0.1350  inconclusive
+
+T2c Hansen SPA over the 100 instances (consistent p-value)
+    vs AR3: p = 0.0398
+    vs HAR: p = 0.0891
+
+T2d selection-matched, both best-of-100 on TEST (mimics the paper)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_testbest vs ESN-10 testbest            0.9956 [0.8967, 1.0980]   0.9332   0.9332  inconclusive
+QR_testbest vs RandTrig-10 testbest       0.8827 [0.8022, 0.9694]   0.0148   0.0444  better
+QR_testbest vs RFF-10 testbest            0.9197 [0.8350, 1.0212]   0.0990   0.1980  inconclusive
+
+T2d selection-matched, both selected on VALIDATION
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESN-10 val-selected             1.0225 [0.9244, 1.1307]   0.6804   0.6804  inconclusive
+QR_val vs RandTrig-10 val-selected        0.8454 [0.7520, 0.9417]   0.0060   0.0180  better
+QR_val vs RFF-10 val-selected             0.8932 [0.7723, 1.0214]   0.1077   0.2154  inconclusive
+
+T3 size-matched and surrogate controls (Holm over 7)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESNtuned-10                     0.8910 [0.7397, 1.0771]   0.2134   0.3230  inconclusive
+QR_val vs RandTrig-10                     0.8454 [0.7520, 0.9417]   0.0060   0.0359  better
+QR_val vs RFF-10                          0.8932 [0.7723, 1.0214]   0.1077   0.3230  inconclusive
+QR_val vs Trig2                           0.8798 [0.7772, 0.9829]   0.0283   0.1417  inconclusive
+QR_val vs QR_J0                           0.8616 [0.7834, 0.9373]   0.0033   0.0231  better
+QR_val vs AR3                             0.9006 [0.8011, 0.9972]   0.0613   0.2454  inconclusive
+QR_val vs HAR                             0.9202 [0.8215, 1.0208]   0.1350   0.3230  inconclusive
+
+T3 95% Model Confidence Set: included = ['AR3', 'ESNtuned-10', 'HAR', 'QR_val', 'RFF-10', 'Trig2']
+   MCS p-values: {'QR_J0': 0.022, 'RandTrig-10': 0.043, 'Trig2': 0.242, 'AR3': 0.242, 'RFF-10': 0.336, 'HAR': 0.336, 'ESNtuned-10': 0.336, 'QR_val': 1.0}
+   mean loss QR_val         0.10635
+   mean loss ESNtuned-10    0.11936
+   mean loss RandTrig-10    0.12581
+   mean loss RFF-10         0.11907
+   mean loss Trig2          0.12087
+   mean loss QR_J0          0.12343
+   mean loss AR3            0.11808
+   mean loss HAR            0.11557
+
+--- loss: secondary ---
+
+T2b honest selection
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs AR3                             0.8086 [0.6754, 0.9382]   0.0050   0.0099  better
+QR_val vs HAR                             0.8440 [0.7140, 0.9824]   0.0301   0.0301  better
+
+T2c Hansen SPA over the 100 instances (consistent p-value)
+    vs AR3: p = 0.0206
+    vs HAR: p = 0.0689
+
+T2d selection-matched, both best-of-100 on TEST (mimics the paper)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_testbest vs ESN-10 testbest            0.9802 [0.8294, 1.1435]   0.8037   0.8037  inconclusive
+QR_testbest vs RandTrig-10 testbest       0.8769 [0.7540, 1.0048]   0.0551   0.1652  inconclusive
+QR_testbest vs RFF-10 testbest            0.8822 [0.7742, 1.0017]   0.0599   0.1652  inconclusive
+
+T2d selection-matched, both selected on VALIDATION
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESN-10 val-selected             0.9806 [0.8146, 1.1724]   0.8352   0.8352  inconclusive
+QR_val vs RandTrig-10 val-selected        0.7467 [0.6363, 0.8509]   0.0003   0.0009  better
+QR_val vs RFF-10 val-selected             0.8064 [0.6543, 0.9622]   0.0213   0.0426  better
+
+T3 size-matched and surrogate controls (Holm over 7)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESNtuned-10                     0.8040 [0.6611, 1.0350]   0.0816   0.0903  inconclusive
+QR_val vs RandTrig-10                     0.7467 [0.6363, 0.8509]   0.0003   0.0022  better
+QR_val vs RFF-10                          0.8064 [0.6543, 0.9622]   0.0213   0.0852  inconclusive
+QR_val vs Trig2                           0.8425 [0.7574, 0.9596]   0.0414   0.0903  inconclusive
+QR_val vs QR_J0                           0.7768 [0.6713, 0.8687]   0.0005   0.0027  better
+QR_val vs AR3                             0.8086 [0.6754, 0.9382]   0.0050   0.0248  better
+QR_val vs HAR                             0.8440 [0.7140, 0.9824]   0.0301   0.0903  inconclusive
+
+T3 95% Model Confidence Set: included = ['ESNtuned-10', 'HAR', 'QR_val', 'RFF-10', 'Trig2']
+   MCS p-values: {'QR_J0': 0.007, 'RandTrig-10': 0.007, 'AR3': 0.036, 'HAR': 0.109, 'RFF-10': 0.109, 'Trig2': 0.109, 'ESNtuned-10': 0.109, 'QR_val': 1.0}
+   mean loss QR_val         0.25744
+   mean loss ESNtuned-10    0.32021
+   mean loss RandTrig-10    0.34477
+   mean loss RFF-10         0.31925
+   mean loss Trig2          0.30556
+   mean loss QR_J0          0.33142
+   mean loss AR3            0.31837
+   mean loss HAR            0.30501
+
+Trig2 ridge lambda chosen on validation: 10.0
+
+DECISION (QR1, primary loss): T3 all-better-after-Holm = False; T2c must also reject for AR3 and HAR (see above). Claim survives only if both hold.
+====================================================================================================
+QR2  (20 readout features; controls of size 20)
+====================================================================================================
+
+T2a  test MSE over 100 instances: median 0.1095, 5-95% [0.1037, 0.1156], min 0.1018, max 0.1168
+     authors' instance 2: MSE 0.1038, rank 7 of 100
+     AR3 test MSE 0.1181; instances beating it: 100 / 100
+     HAR test MSE 0.1156; instances beating it: 94 / 100
+     validation-selected instance 97: test MSE 0.1073; test-selected instance 44: 0.1018
+
+--- loss: primary ---
+
+T2b honest selection
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs AR3                             0.9088 [0.8219, 0.9989]   0.0547   0.1095  inconclusive
+QR_val vs HAR                             0.9286 [0.8461, 1.0197]   0.1192   0.1192  inconclusive
+
+T2c Hansen SPA over the 100 instances (consistent p-value)
+    vs AR3: p = 0.0238
+    vs HAR: p = 0.0585
+
+T2d selection-matched, both best-of-100 on TEST (mimics the paper)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_testbest vs ESN-20 testbest            1.0196 [0.9420, 1.1060]   0.6430   0.8605  inconclusive
+QR_testbest vs RandTrig-20 testbest       0.9334 [0.8754, 0.9931]   0.0410   0.1229  inconclusive
+QR_testbest vs RFF-20 testbest            0.9644 [0.8837, 1.0511]   0.4302   0.8605  inconclusive
+
+T2d selection-matched, both selected on VALIDATION
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESN-20 val-selected             1.0114 [0.9335, 1.0899]   0.7852   0.7852  inconclusive
+QR_val vs RandTrig-20 val-selected        0.9230 [0.7798, 1.0665]   0.3147   0.6295  inconclusive
+QR_val vs RFF-20 val-selected             0.8645 [0.7430, 0.9963]   0.0408   0.1223  inconclusive
+
+T3 size-matched and surrogate controls (Holm over 7)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESNtuned-20                     1.0142 [0.9514, 1.0795]   0.6715   0.6715  inconclusive
+QR_val vs RandTrig-20                     0.9230 [0.7798, 1.0665]   0.3147   0.6295  inconclusive
+QR_val vs RFF-20                          0.8645 [0.7430, 0.9963]   0.0408   0.2446  inconclusive
+QR_val vs Trig2                           0.8946 [0.7866, 1.0123]   0.0716   0.2866  inconclusive
+QR_val vs QR_J0                           0.8734 [0.8015, 0.9470]   0.0041   0.0290  better
+QR_val vs AR3                             0.9088 [0.8219, 0.9989]   0.0547   0.2736  inconclusive
+QR_val vs HAR                             0.9286 [0.8461, 1.0197]   0.1192   0.3576  inconclusive
+
+T3 95% Model Confidence Set: included = ['AR3', 'ESNtuned-20', 'HAR', 'QR_val', 'RFF-20', 'RandTrig-20', 'Trig2']
+   MCS p-values: {'QR_J0': 0.009, 'RFF-20': 0.118, 'AR3': 0.118, 'Trig2': 0.213, 'HAR': 0.213, 'RandTrig-20': 0.362, 'QR_val': 0.656, 'ESNtuned-20': 1.0}
+   mean loss QR_val         0.10732
+   mean loss ESNtuned-20    0.10582
+   mean loss RandTrig-20    0.11627
+   mean loss RFF-20         0.12414
+   mean loss Trig2          0.11996
+   mean loss QR_J0          0.12287
+   mean loss AR3            0.11808
+   mean loss HAR            0.11557
+
+--- loss: secondary ---
+
+T2b honest selection
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs AR3                             0.8774 [0.7607, 0.9863]   0.0273   0.0545  inconclusive
+QR_val vs HAR                             0.9158 [0.8031, 1.0217]   0.1107   0.1107  inconclusive
+
+T2c Hansen SPA over the 100 instances (consistent p-value)
+    vs AR3: p = 0.1156
+    vs HAR: p = 0.2841
+
+T2d selection-matched, both best-of-100 on TEST (mimics the paper)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_testbest vs ESN-20 testbest            1.0488 [0.9324, 1.1760]   0.4509   0.9018  inconclusive
+QR_testbest vs RandTrig-20 testbest       0.9039 [0.8318, 0.9739]   0.0127   0.0382  better
+QR_testbest vs RFF-20 testbest            1.0135 [0.9015, 1.1388]   0.8263   0.9018  inconclusive
+
+T2d selection-matched, both selected on VALIDATION
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESN-20 val-selected             0.9961 [0.8896, 1.0877]   0.9404   0.9404  inconclusive
+QR_val vs RandTrig-20 val-selected        0.8401 [0.6650, 1.0336]   0.1457   0.2914  inconclusive
+QR_val vs RFF-20 val-selected             0.8700 [0.7467, 0.9991]   0.0407   0.1221  inconclusive
+
+T3 size-matched and surrogate controls (Holm over 7)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+QR_val vs ESNtuned-20                     0.9979 [0.9135, 1.0869]   0.9649   0.9649  inconclusive
+QR_val vs RandTrig-20                     0.8401 [0.6650, 1.0336]   0.1457   0.3970  inconclusive
+QR_val vs RFF-20                          0.8700 [0.7467, 0.9991]   0.0407   0.2035  inconclusive
+QR_val vs Trig2                           0.8382 [0.7041, 1.0071]   0.0992   0.3970  inconclusive
+QR_val vs QR_J0                           0.8563 [0.7499, 0.9468]   0.0057   0.0402  better
+QR_val vs AR3                             0.8774 [0.7607, 0.9863]   0.0273   0.1635  inconclusive
+QR_val vs HAR                             0.9158 [0.8031, 1.0217]   0.1107   0.3970  inconclusive
+
+T3 95% Model Confidence Set: included = ['AR3', 'ESNtuned-20', 'HAR', 'QR_J0', 'QR_val', 'RFF-20', 'RandTrig-20', 'Trig2']
+   MCS p-values: {'QR_J0': 0.053, 'AR3': 0.124, 'RFF-20': 0.145, 'Trig2': 0.263, 'HAR': 0.333, 'RandTrig-20': 0.333, 'ESNtuned-20': 0.966, 'QR_val': 1.0}
+   mean loss QR_val         0.27934
+   mean loss ESNtuned-20    0.27992
+   mean loss RandTrig-20    0.33250
+   mean loss RFF-20         0.32108
+   mean loss Trig2          0.33328
+   mean loss QR_J0          0.32621
+   mean loss AR3            0.31837
+   mean loss HAR            0.30501
+
+Trig2 ridge lambda chosen on validation: 10.0
+
+DECISION (QR2, primary loss): T3 all-better-after-Holm = False; T2c must also reject for AR3 and HAR (see above). Claim survives only if both hold.

@@ -1,0 +1,22 @@
+Jobs: {"pilot": {"job_id": "dbr91k7v5hds73dhcq30", "backend": "ibm_marrakesh", "shots": 1000, "n_circuits": 60, "submitted": "2026-11-13T04:23:44Z", "status": "DONE", "usage_seconds": 23, "metrics": {"qpu_charge_time_seconds": 23, "value": 0.378172, "unit": "resource_units", "status": "complete", "details": [{"value": 0.378172, "unit": "resource_units", "metric": {"id": "caffe3ca-729c-5750-8777-df63bbf8bfd9", "value": 23}}]}}, "full": {"job_id": "dbr924mjjaos73aik6u0", "backend": "ibm_marrakesh", "shots": 500, "n_circuits": 813, "submitted": "2026-11-13T04:24:50Z", "status": "DONE", "usage_seconds": 
+
+== pilot: 60 rows, 1000 shots (shot-noise scale 1/sqrt(shots) = 0.032)
+   HW vs T1SIM: mean |dZ| 0.3782, max 0.8706; per-feature correlation median 0.832 [min 0.060]
+   HW vs EXACT: mean |dZ| 0.3117, max 0.7451; per-feature correlation median 0.806 [min -0.061]
+   T1SIM vs EXACT (Trotter error only): mean |dZ| 0.0867, max 0.3568
+   mean |<Z>| on hardware 0.3442 vs T1SIM 0.7050 (shrinkage toward 0 = depolarising noise)
+== full: 813 rows, 500 shots (shot-noise scale 1/sqrt(shots) = 0.045)
+   HW vs T1SIM: mean |dZ| 0.3762, max 0.9159; per-feature correlation median 0.731 [min 0.131]
+   HW vs EXACT: mean |dZ| 0.3130, max 0.7841; per-feature correlation median 0.703 [min 0.084]
+   T1SIM vs EXACT (Trotter error only): mean |dZ| 0.0832, max 0.3578
+   mean |<Z>| on hardware 0.3390 vs T1SIM 0.7022 (shrinkage toward 0 = depolarising noise)
+   test MSE HW: 0.1275
+   test MSE T1SIM: 0.1105
+   test MSE EXACT: 0.1064
+   test MSE HAR: 0.1156
+
+Test 8 forecast, primary loss (Holm over 3)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+HW vs T1SIM                               1.1529 [1.0424, 1.2855]   0.0049   0.0097  worse
+HW vs EXACT                               1.1984 [1.0738, 1.3525]   0.0018   0.0053  worse
+HW vs HAR                                 1.1028 [1.0082, 1.2120]   0.0423   0.0423  worse

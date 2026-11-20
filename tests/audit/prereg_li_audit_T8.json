@@ -1,0 +1,16 @@
+{
+ "status": "FROZEN 2026-11-13 before any Test 8 job was submitted. Changes only by dated addendum.",
+ "known_before_freezing": "Tests 1-7 and addendum A1 scored (PROGRESS/25). t8_plan.py: 1-step Trotter circuit has 972 CZ on ibm_fez, max |<Z>| Trotter error 0.28 vs exact; 4 steps needs ~3,900 CZ. No hardware data seen.",
+ "approval": "Student approved submitting both the pilot and the full run on 2026-11-13. The full run is skipped if the pilot's measured QPU time implies it would exceed the remaining budget.",
+ "circuit": "Li et al. QR1, validation-selected instance 51 (Test 2), published QR1 inputs. 10 qubits; per lag k = 3,2,1: reset input qubits 0-6 (k < 3), RY(pi x) on inputs, exp(-iH) by 2nd-order Suzuki-Trotter with 1 step. Measure all 10 qubits; feature q = 1 - 2 P(bit q = 1). One parameterised circuit transpiled once (optimization level 3, seed 1) for the least-busy of ibm_fez / ibm_marrakesh / ibm_kingston; SamplerV2, job mode, no error mitigation, default settings.",
+ "pilot": "60 rows evenly spaced over rows 3..815, 1000 shots.",
+ "full": "All rows 3..815 (813 circuits), 500 shots.",
+ "references": "EXACT = li_lib exact features; T1SIM = the same 1-step circuit on the noiseless Aer density-matrix simulator.",
+ "scoring": {
+  "feature_fidelity": "For pilot and full: mean and max |<Z>| difference HW vs T1SIM and HW vs EXACT; correlation per feature. Shot-noise floor reported as the mean 1/sqrt(shots) scale.",
+  "forecast (full run only)": "Rolling ridge as registered for QR1 (window 571, lambda 1e-8, no intercept, 245 test forecasts) on HW features, on T1SIM features and on EXACT features. Ratios HW/T1SIM, HW/EXACT, HW/HAR with the T2T3 bootstrap/DM machinery, Holm over the 3. Equivalence band +/-3%.",
+  "rule": "Descriptive. HW counts as reproducing the simulator if HW/T1SIM is 'equivalent'. No quantum-advantage claim is possible from this test."
+ },
+ "student_predictions": "Not provided.",
+ "scripts": ["t8_submit.py", "t8_score.py"]
+}

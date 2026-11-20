@@ -1,0 +1,52 @@
+{
+ "pilot": {
+  "job_id": "dbr91k7v5hds73dhcq30",
+  "backend": "ibm_marrakesh",
+  "shots": 1000,
+  "n_circuits": 60,
+  "submitted": "2026-11-13T04:23:44Z",
+  "status": "DONE",
+  "usage_seconds": 23,
+  "metrics": {
+   "qpu_charge_time_seconds": 23,
+   "value": 0.378172,
+   "unit": "resource_units",
+   "status": "complete",
+   "details": [
+    {
+     "value": 0.378172,
+     "unit": "resource_units",
+     "metric": {
+      "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+      "value": 23
+     }
+    }
+   ]
+  }
+ },
+ "full": {
+  "job_id": "dbr924mjjaos73aik6u0",
+  "backend": "ibm_marrakesh",
+  "shots": 500,
+  "n_circuits": 813,
+  "submitted": "2026-11-13T04:24:50Z",
+  "status": "DONE",
+  "usage_seconds": 145,
+  "metrics": {
+   "qpu_charge_time_seconds": 145,
+   "value": 2.412065,
+   "unit": "resource_units",
+   "status": "complete",
+   "details": [
+    {
+     "value": 2.412065,
+     "unit": "resource_units",
+     "metric": {
+      "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+      "value": 145
+     }
+    }
+   ]
+  }
+ }
+}

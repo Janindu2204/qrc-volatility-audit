@@ -1,0 +1,9 @@
+# Raw or provider data are never committed: rebuild them with the scripts in data/ and tests/audit/fetch_li.py
+data/li2026/*
+!data/li2026/SOURCE.json
+data/daily_long/
+data/daily_multi/
+# Outputs of a fresh run (the archived outputs of the paper are in results/)
+tests/audit/out/
+__pycache__/
+*.pid

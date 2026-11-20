@@ -1,0 +1,9 @@
+T5a sweep check: max residual RMS of a + b cos(pi x) + c sin(pi x) per input
+  QR1 instance 1: worst residual RMS over 21 inputs x 10 features = 1.12e-15
+  QR2 instance 2: worst residual RMS over 21 inputs x 20 features = 4.02e-15
+
+T5b holdout R^2 (median over readout features; min in brackets)
+  QR1 uniform  : order<=1 R^2 median 0.9891 [min 0.1246] | order<=2 R^2 median 0.9995 [min 0.9542]  (10 instances)
+  QR1 empirical: order<=1 R^2 median 0.9885 [min 0.3923] | order<=2 R^2 median 1.0000 [min 1.0000]  (10 instances)
+  QR2 uniform  : order<=1 R^2 median 0.9932 [min 0.0844] | order<=2 R^2 median 0.9996 [min 0.9584]  (10 instances)
+  QR2 empirical: order<=1 R^2 median 0.9939 [min 0.3244] | order<=2 R^2 median 1.0000 [min 1.0000]  (10 instances)

@@ -1,0 +1,150 @@
+{
+ "QR1_val": [
+  {
+   "added": "RV",
+   "criterion_value": 0.009590491061845507,
+   "test_mse": 0.11856656505710235
+  },
+  {
+   "added": "TB",
+   "criterion_value": 0.009035703015348841,
+   "test_mse": 0.12965475556932338
+  },
+  {
+   "added": "SMB",
+   "criterion_value": 0.008843124147432076,
+   "test_mse": 0.13175941004570818
+  },
+  {
+   "added": "IP",
+   "criterion_value": 0.008864669064962855,
+   "test_mse": 0.13186380724006963
+  },
+  {
+   "added": "DP",
+   "criterion_value": 0.008867187494939085,
+   "test_mse": 0.13471804486136799
+  },
+  {
+   "added": "STR",
+   "criterion_value": 0.008650057315669979,
+   "test_mse": 0.1438447534572022
+  },
+  {
+   "added": "RV_q",
+   "criterion_value": 0.00890159238210125,
+   "test_mse": 0.1252802647216502
+  }
+ ],
+ "QR1_test": [
+  {
+   "added": "RV",
+   "criterion_value": 0.009580367494304704,
+   "test_mse": 0.11856656505710235
+  },
+  {
+   "added": "MKT",
+   "criterion_value": 0.00900738782806824,
+   "test_mse": 0.11147537247877913
+  },
+  {
+   "added": "DP",
+   "criterion_value": 0.008907774975804474,
+   "test_mse": 0.11024256447475668
+  },
+  {
+   "added": "IP",
+   "criterion_value": 0.009049856862400797,
+   "test_mse": 0.11200096896817234
+  },
+  {
+   "added": "RV_q",
+   "criterion_value": 0.00908724978089659,
+   "test_mse": 0.11246374348137783
+  },
+  {
+   "added": "STR",
+   "criterion_value": 0.008580121855045295,
+   "test_mse": 0.10618753160866355
+  },
+  {
+   "added": "DEF",
+   "criterion_value": 0.008490731473141567,
+   "test_mse": 0.10508123683053858
+  }
+ ],
+ "QR2_val": [
+  {
+   "added": "RV_a",
+   "criterion_value": 0.009691406907875986,
+   "test_mse": 0.16198782768942854
+  },
+  {
+   "added": "RV",
+   "criterion_value": 0.009210607599750545,
+   "test_mse": 0.12090115627523358
+  },
+  {
+   "added": "MKT",
+   "criterion_value": 0.008725919074663326,
+   "test_mse": 0.10791565364469946
+  },
+  {
+   "added": "IP",
+   "criterion_value": 0.008477371666541762,
+   "test_mse": 0.10797852653137628
+  },
+  {
+   "added": "TB",
+   "criterion_value": 0.008927713076695345,
+   "test_mse": 0.10653310449074162
+  },
+  {
+   "added": "EP",
+   "criterion_value": 0.008631656723089342,
+   "test_mse": 0.11091074188205229
+  },
+  {
+   "added": "DP",
+   "criterion_value": 0.008607712976622283,
+   "test_mse": 0.1127153577693002
+  }
+ ],
+ "QR2_test": [
+  {
+   "added": "RV",
+   "criterion_value": 0.009550179762091436,
+   "test_mse": 0.11819296188190906
+  },
+  {
+   "added": "MKT",
+   "criterion_value": 0.009014589438768967,
+   "test_mse": 0.11156449956541452
+  },
+  {
+   "added": "STR",
+   "criterion_value": 0.008551137047122792,
+   "test_mse": 0.10582881581657583
+  },
+  {
+   "added": "RV_q",
+   "criterion_value": 0.00846155386307235,
+   "test_mse": 0.10472013492035202
+  },
+  {
+   "added": "EP",
+   "criterion_value": 0.008445667178872645,
+   "test_mse": 0.1045235214212534
+  },
+  {
+   "added": "INF",
+   "criterion_value": 0.008678581410263928,
+   "test_mse": 0.10740606641604578
+  },
+  {
+   "added": "DEF",
+   "criterion_value": 0.008383648711816849,
+   "test_mse": 0.10375598128114039
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+====================================================================================================
+QR1
+====================================================================================================
+published  scaling: median MSE 0.1094 [5-95% 0.1051, 0.1136]; authors' instance 1 MSE 0.1051 (rank 5); val-selected instance 51 MSE 0.1064
+train-only scaling: median MSE 0.1090 [5-95% 0.1061, 0.1117]; authors' instance 1 MSE 0.1067 (rank 10); val-selected instance 51 MSE 0.1081
+
+QR1 loss=primary: effect of the scaling (ratio < 1 means train-only scaling is better)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance: train-only vs published  1.0150 [0.9839, 1.0466]   0.4003   0.8006  inconclusive
+val-selected: train-only vs published     1.0162 [0.9831, 1.0505]   0.4089   0.8006  inconclusive
+
+QR1 loss=primary: train-only scaling vs linear baselines
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance (train-only) vs AR3     0.9032 [0.8090, 0.9937]   0.0544   0.2178  inconclusive
+authors' instance (train-only) vs HAR     0.9229 [0.8324, 1.0159]   0.1231   0.3102  inconclusive
+val-selected (train-only) vs AR3          0.9152 [0.8197, 1.0114]   0.1034   0.3102  inconclusive
+val-selected (train-only) vs HAR          0.9351 [0.8415, 1.0365]   0.2149   0.3102  inconclusive
+
+QR1 loss=secondary: effect of the scaling (ratio < 1 means train-only scaling is better)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance: train-only vs published  0.9887 [0.9351, 1.0530]   0.7379   1.0000  inconclusive
+val-selected: train-only vs published     0.9972 [0.9398, 1.0727]   0.9366   1.0000  inconclusive
+
+QR1 loss=secondary: train-only scaling vs linear baselines
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance (train-only) vs AR3     0.8057 [0.6966, 0.9135]   0.0023   0.0090  better
+authors' instance (train-only) vs HAR     0.8410 [0.7336, 0.9654]   0.0177   0.0354  better
+val-selected (train-only) vs AR3          0.8063 [0.6918, 0.9219]   0.0032   0.0097  better
+val-selected (train-only) vs HAR          0.8417 [0.7255, 0.9720]   0.0224   0.0354  better
+====================================================================================================
+QR2
+====================================================================================================
+published  scaling: median MSE 0.1095 [5-95% 0.1037, 0.1156]; authors' instance 2 MSE 0.1038 (rank 7); val-selected instance 97 MSE 0.1073
+train-only scaling: median MSE 0.1083 [5-95% 0.1022, 0.1126]; authors' instance 2 MSE 0.1056 (rank 20); val-selected instance 16 MSE 0.1079
+
+QR2 loss=primary: effect of the scaling (ratio < 1 means train-only scaling is better)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance: train-only vs published  1.0177 [0.9764, 1.0586]   0.3858   0.7716  inconclusive
+val-selected: train-only vs published     1.0054 [0.9476, 1.0676]   0.8590   0.8590  inconclusive
+
+QR2 loss=primary: train-only scaling vs linear baselines
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance (train-only) vs AR3     0.8942 [0.8043, 0.9930]   0.0357   0.1429  inconclusive
+authors' instance (train-only) vs HAR     0.9137 [0.8215, 1.0207]   0.0911   0.2734  inconclusive
+val-selected (train-only) vs AR3          0.9137 [0.8171, 1.0193]   0.0976   0.2734  inconclusive
+val-selected (train-only) vs HAR          0.9336 [0.8344, 1.0492]   0.2190   0.2734  inconclusive
+
+QR2 loss=secondary: effect of the scaling (ratio < 1 means train-only scaling is better)
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance: train-only vs published  1.0057 [0.9606, 1.0501]   0.8087   0.8087  inconclusive
+val-selected: train-only vs published     1.0646 [0.9736, 1.1671]   0.1968   0.3935  inconclusive
+
+QR2 loss=secondary: train-only scaling vs linear baselines
+comparison                                 ratio            95% CI        p   p_holm  verdict
+authors' instance (train-only) vs AR3     0.8811 [0.7568, 1.0177]   0.0837   0.3346  inconclusive
+authors' instance (train-only) vs HAR     0.9196 [0.7932, 1.0797]   0.2604   0.7812  inconclusive
+val-selected (train-only) vs AR3          0.9341 [0.7883, 1.0676]   0.3208   0.7812  inconclusive
+val-selected (train-only) vs HAR          0.9750 [0.8284, 1.1280]   0.7272   0.7812  inconclusive

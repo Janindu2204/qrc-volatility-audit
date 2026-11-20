@@ -1,0 +1,20 @@
+{
+ "status": "FROZEN 2026-11-12 before any Test 7 run. Changes only by dated addendum.",
+ "date_frozen": "2026-11-12",
+ "label": "TRANSFER TEST, not a replication: Li et al.'s exact QRC design (10 qubits, 7 inputs, 3 lags, their 100 coupling matrices, QR1 and QR2 readouts) applied to monthly commodity realized volatility.",
+ "assets": ["HG (copper, primary)", "CL", "GC", "HO", "NG", "ZC", "ZS", "ZW"],
+ "data": "HG: data/daily_long/flagged_v2/HG_F_1d.csv, ret_clean. Others: data/daily_multi/<A>.csv close-to-close log returns (same cleaning as long_prereg_multiasset.json). Months 2000-10..2024-12; the 2025-26 holdout is never read. Monthly RV = log sqrt(sum of squared daily log returns in the month), as in Li et al.",
+ "inputs_7": "RV, RV_q (mean of RV over months t-2..t), RV_a (t-11..t), monthly log return of the asset, RV of a driver commodity (CL for every asset except CL, which uses HG), log of monthly mean VIX close, monthly log return of DX-Y.NYB. QRC uses lags t-1..t-3 of these to forecast RV_t, exactly as the authors' design.",
+ "scaling": "Min-max on the first training window only (no look-ahead), clipped: RV-type to [-1, 0], returns to [-1, 1], VIX and driver RV to [0, 1], matching the authors' ranges. Target = scaled RV.",
+ "split": "Test 2015-01..2024-12 (120 one-step forecasts). Rolling window = all usable months before 2015-01 (fixed length). Validation = 2012-01..2014-12 (36 forecasts) with window length shortened by 36. All selection and tuning on validation only.",
+ "models": "Same families and settings as prereg_li_audit_T2T3.json: QR1/QR2 over 100 instances (QR_val = validation-selected), QR_J0, ESNtuned_w-p, RandTrig-p, RFF-p (each validation-selected over 100), Trig2 (validation-tuned ridge), AR3, HAR(1,3,12). p = 10 vs QR1, 20 vs QR2.",
+ "loss": "primary: squared error on the scaled log RV; secondary: per-period QLIKE on variance exp(2 logRV) after unscaling",
+ "rules": {
+  "per_asset": "QR_val vs each of the 7 comparators: ratio, stationary-bootstrap 95% interval (block 6, 5000), Diebold-Mariano Newey-West lag 4, Holm over the 7. Quantum edge in an asset only if better than all 7 with Holm p < 0.05 (strict rule).",
+  "overall": "A transfer of the published claim is supported for a design only if it shows a quantum edge in at least 5 of 8 assets; otherwise 'not supported on commodities'. Copper reported first and on its own.",
+  "descriptive": "Rank and distribution of the 100 instances' test losses per asset; Hansen SPA of the 100 instances vs HAR per asset."
+ },
+ "power_caveat": "120 test months per asset is fewer than the paper's 245; Test 6 (MDE) will quantify what this design can detect.",
+ "student_predictions": "Not provided. The student asked the assistant to proceed without stating predictions (2026-11-12).",
+ "scripts": ["li_lib.py", "t2t3_run.py (shared feature builders)", "t7_run.py", "t7_report.py"]
+}

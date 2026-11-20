@@ -1,0 +1,36 @@
+{
+ "status": "FROZEN 2026-11-12 before any Test 2 or Test 3 run. Changes only by dated addendum.",
+ "date_frozen": "2026-11-12",
+ "target_claim": "Li, Mukhopadhyay, Bayat, Habibnia, Phys. Rev. Research 8, 023028 (2026): quantum reservoirs QR1/QR2 outperform all classical models for monthly S&P 500 realized volatility (MSE and QLIKE, Model Confidence Set, Diebold-Mariano).",
+ "already_known_before_freezing": [
+  "Test 1 reproduction (run before this file, no hypothesis): our implementation reproduces the authors' QR1/QR2 forecasts to 1.2e-6 and their MSE (0.1051, 0.1038) and paper-QLIKE (1.4428, 1.4004).",
+  "AR1/AR3 reproduce the paper (0.1302 vs 0.1304; 0.1181 vs 0.1178). A standard HAR(1,3,12) built from RV has MSE 0.1156, not the paper's HAR 0.1476.",
+  "No QRC instance other than the authors' instances 1 (QR1) and 2 (QR2) has been run. No control model has been run."
+ ],
+ "data": "Authors' Data.CSV (commit d2e9b0aa), their feature lists (QR1: RV, MKT, DP, IP, RV_q, STR, DEF; QR2: RV, MKT, STR, RV_q, EP, INF, DEF), their 100 coupling matrices, their rolling scheme (window 571, 245 one-step forecasts 1997-08..2017-12). Test 4 (separate) changes the scaling and feature selection; here everything is as published.",
+ "validation_window": "Inner pseudo-out-of-sample inside the first training window: forecasts for rows 451..570 (120 months, 1987-08..1997-07), each from the preceding 451 rows, same readout. Used for every selection and tuning choice. The 245 test rows are never used for choosing anything, except where a rule below says 'test-selected' to mimic the paper.",
+ "losses": {"primary": "squared error on the authors' scaled log RV (their MSE up to a constant)", "secondary": "per-period QLIKE on variance exp(2 logRV)", "also_reported": "the authors' summed |logRV| QLIKE, for comparability only"},
+ "models": {
+  "QR1_i, QR2_i": "the authors' reservoirs for all 100 coupling instances i (QR1 design with QR1 features, QR2 design with QR2 features)",
+  "QR_val": "the instance with the lowest validation loss (honest selection)",
+  "QR_testbest": "the instance with the lowest test loss (mimics 'best of 100'); used only for selection-matched comparisons",
+  "QR_J0": "no-coupling control: J = 0, same field, same readout",
+  "AR3, HAR": "rolling OLS with intercept; HAR(1,3,12) from RV",
+  "ESN_w-p": "echo state network, p = 10, 20 (and 50), run over the same 3-lag window from a zero state, leak 0.6, spectral radius 0.9, input scaling 0.1, bias input; 100 random instances; same readout as QR (ridge 1e-8, no intercept)",
+  "ESNtuned_w-p": "same, with leak in {0.3, 0.6, 1.0}, spectral radius in {0.5, 0.9, 1.2}, input scaling in {0.1, 0.5, 1.0} chosen on validation per instance",
+  "RandTrig-p": "p random features, each a product over a random subset of 1 to 3 of the 21 inputs of cos(pi x) or sin(pi x), the function family the QRC readout provably lies in (assistant's derivation); 100 random instances; same readout",
+  "RFF-p": "p random Fourier features cos(w.x + b) of the 21 inputs, w ~ N(0, g^2 I), g in {0.3, 1, 3} chosen on validation; 100 instances; same readout",
+  "Trig2": "all multilinear trig monomials of order <= 2 in the 21 inputs (883 columns), ridge lambda chosen on validation from {1e-4, 1e-3, 1e-2, 1e-1, 1, 10}"
+ },
+ "matching": "QR1 (10 features) is compared with p = 10 controls, QR2 (20 features) with p = 20.",
+ "tests": {
+  "T2a_selection_rank": "Rank of the authors' instances (1 for QR1, 2 for QR2) among the 100 by test loss; median and 5-95% range of test loss over the 100. Descriptive.",
+  "T2b_honest_selection": "QR_val vs AR3 and vs HAR: loss ratio, stationary-bootstrap 95% interval (mean block 6, 5000 draws), Diebold-Mariano with Newey-West lag 4.",
+  "T2c_data_snooping": "Hansen SPA test (arch, stationary bootstrap, block 6, 10000 draws) of the 100 QR instances against AR3 and against HAR. p < 0.05 means at least one instance genuinely beats the benchmark after accounting for the search.",
+  "T2d_selection_matched": "QR_testbest vs ESN_w, RandTrig and RFF each also selected as best of 100 on test; and QR_val vs each control selected on validation. Ratios, intervals, DM; Holm within each family.",
+  "T3_size_matched": "QR_val vs ESNtuned_w (val-selected instance), RandTrig (val-selected), RFF (val-selected), Trig2, QR_J0, AR3, HAR: ratio, interval, DM, Holm over these 7; plus the 95% Model Confidence Set (arch MCS, block 6, 10000 draws) over all val-selected models, QR1 and QR2 designs separately."
+ },
+ "decision_rule": "The published claim 'QRC beats classical models' SURVIVES for a design (QR1 or QR2) only if QR_val has lower loss than every comparator in T3 with Holm p < 0.05 on the primary loss AND T2c rejects for both benchmarks. Otherwise it is reported as 'not robust to honest selection and matched controls'. If QR_val is significantly WORSE than a control, that is reported too. Equivalence band +/-3% on the loss ratio, as in the copper studies.",
+ "student_predictions": "Not provided. The student asked the assistant to proceed without stating predictions (2026-11-12). Recorded here so that nothing is claimed as a blind prediction.",
+ "scripts": ["li_lib.py", "t2t3_run.py", "t2t3_report.py"]
+}

@@ -1,0 +1,22 @@
+{
+ "status": "FROZEN 2026-11-12 before any Test 4, 5 or 6 run. Changes only by dated addendum.",
+ "date_frozen": "2026-11-12",
+ "known_before_freezing": "Test 1 reproduction passed. Test 2-3 runs were in progress (not scored, no output inspected) when this file was frozen.",
+ "T4_preprocessing": {
+  "T4a_scaling": "Re-scale every INPUT column with min and max from the first training window only (rows 0..570), mapped to the same target range the column has in the authors' file ([0,1], [-1,1] or [-1,0]; IP and INF, which are not min-max scaled in the file, are left unchanged), clipped to that range. The target column RV is left as published so losses stay comparable. Re-run QR1 and QR2 over all 100 instances plus AR3/HAR; report authors' instances and the validation-selected instance, original vs train-only scaling, as loss ratios with the T2T3 interval/DM machinery.",
+  "T4b_feature_selection": "Forward selection of 7 inputs from the 13 candidates DP, EP, MKT, SMB, HML, TB, DEF, IP, INF, RV, STR, RV_q, RV_a, using the authors' instance (instance 1 for QR1, 2 for QR2), original scaling, scored by (i) validation MSE (rows 451..570, honest) and (ii) test MSE (forensic: does test-scored selection reproduce the published feature lists?). Report the selected sequence for each criterion, the overlap with the published lists, and the test MSE of the honest selection vs the published lists.",
+  "T4_rule": "Descriptive decomposition of the published margin; no pass/fail. If test-scored selection reproduces a published list exactly (as a set) and validation-scored selection does not, report that the published lists are consistent with selection on the test period (not proof)."
+ },
+ "T5_span": {
+  "T5a_lemma_check": "For instances 1 and 2 and each of the 21 inputs: hold the other 20 at random fixed values, sweep the input over 64 points, and fit a + b cos(pi x) + c sin(pi x) to every readout feature. The proposition (each readout is multilinear in (1, cos pi x_v, sin pi x_v)) predicts residual RMS < 1e-10.",
+  "T5b_effective_order": "For instances 1, 2 and 8 further random instances per design: sample 16,000 input windows (12,000 fit, 4,000 holdout) from (i) uniform over each column's range in the file and (ii) the empirical distribution (rows resampled with replacement, lags taken as consecutive rows of the resample of 3-row blocks). Least-squares fit of every readout feature on the multilinear trig basis of order <= 1 (43 columns) and <= 2 (883 columns); report holdout R^2 by order.",
+  "T5_rule": "Descriptive. If median holdout R^2 at order <= 2 exceeds 0.99 under the empirical distribution, Trig2 is reported as an almost exact surrogate of the reservoir on this data."
+ },
+ "T6_mde": {
+  "design": "Synthetic competitor with true MSE gain delta over a benchmark: competitor error = k * e_bench + s * u_t, where u_t is an independent stationary-bootstrap resample of standardized benchmark errors, k and s set so that the expected MSE ratio is 1 - delta and the error correlation equals the empirical correlation between QR_val and HAR errors in Test 2 (Li data) or Test 7 (copper). 2000 replications per delta in {0.01, 0.02, 0.03, 0.05, 0.075, 0.10, 0.15, 0.20}.",
+  "test": "Diebold-Mariano, Newey-West lag 4, two-sided 5%, counted as detected only if the competitor is better.",
+  "output": "Power curve and 80%-power MDE for (a) Li et al.'s 245-month design and (b) the 120-month copper transfer design; also the MDE when the comparison is one of 7 Holm-corrected tests (alpha 0.05/7 for the most significant)."
+ },
+ "student_predictions": "Not provided. The student asked the assistant to proceed without stating predictions (2026-11-12).",
+ "scripts": ["li_lib.py", "t4_run.py", "t5_run.py", "t6_run.py"]
+}
