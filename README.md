@@ -1,5 +1,9 @@
 # Audit of a quantum reservoir computing claim for realized-volatility forecasting
 
+[![DOI](https://zenodo.org/badge/1465469102.svg)](https://doi.org/10.5281/zenodo.24398015)
+
+Archived release v1.0: doi:10.5281/zenodo.24398016 (all versions: doi:10.5281/zenodo.24398015).
+
 Code, registrations, results and manuscript for the paper:
 
 > S. J. I. Sandanayaka, "Does a Quantum Reservoir Computing Advantage in Volatility Forecasting Survive Honest Evaluation? A
