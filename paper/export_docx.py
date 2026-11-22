@@ -246,7 +246,7 @@ def before(text, style, bold_label=None, sup=None):
 before("Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.", "DOP")
 before("Digital Object Identifier 10.1109/ACCESS.2024.Doi Number", "DOI")
 before(plain(title), "Paper Title")
-before("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA1, MANINDA EDIRISOORIYA1, AND ACHALA APONSO1", "AU")
+before("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA1, MANINDA EDIRISOORIYA1, ACHALA APONSO1, AND ADHISHA GAMMANPILA1", "AU")
 before("1Informatics Institute of Technology, Colombo, Sri Lanka, in collaboration with the University of Westminster, London, U.K.", "PI")
 before("Corresponding author: S. J. I. Sandanayaka (e-mail: janindu.20232270@iit.ac.lk).", "PI")
 before("This work did not receive any specific funding.", "footnote text")
@@ -254,7 +254,7 @@ before(plain(abstract), "Abstract", bold_label="ABSTRACT")
 last_front = before(plain(keywords), "IT", bold_label="INDEX TERMS")
 # superscript affiliation markers
 au = D.paragraphs[3]; au.clear()
-for txt, sup in (("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA", False), ("1", True), (", MANINDA EDIRISOORIYA", False), ("1", True), (", AND ACHALA APONSO", False), ("1", True)):
+for txt, sup in (("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA", False), ("1", True), (", MANINDA EDIRISOORIYA", False), ("1", True), (", ACHALA APONSO", False), ("1", True), (", AND ADHISHA GAMMANPILA", False), ("1", True)):
     r = au.add_run(txt); r.font.superscript = sup
 pi = D.paragraphs[4]; pi.clear()
 r = pi.add_run("1"); r.font.superscript = True
