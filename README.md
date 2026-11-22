@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/1465469102.svg)](https://doi.org/10.5281/zenodo.24398015)
 
-Archived release v1.0: doi:10.5281/zenodo.24398016 (all versions: doi:10.5281/zenodo.24398015).
+Archived releases: v1.1 doi:10.5281/zenodo.24444274 (current, adds the gain-concentration figure script); v1.0 doi:10.5281/zenodo.24398016. All versions: doi:10.5281/zenodo.24398015.
 
 Code, registrations, results and manuscript for the paper:
 
