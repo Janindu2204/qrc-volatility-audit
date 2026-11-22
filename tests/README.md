@@ -10,5 +10,5 @@ All code is in `tests/audit/`. Each test was registered before it was run; the r
 | T8 IBM quantum hardware | `prereg_li_audit_T8.json` | `t8_plan.py`, `t8_submit.py`, `t8_t1sim.py` | `t8_score.py` |
 
 Shared code: `li_lib.py` (independent implementation of the audited reservoir), `stats_lib.py` (tests and intervals).
-Figures: `python make_figures.py <output folder>`.
+Figures: `python make_figures.py <output folder>`. Fig. 4 (gain concentration, post hoc and descriptive, added in v1.1): `python make_fig_cumloss.py <output folder>`; it also prints the numbers of the concentration table.
 T8 needs an IBM Quantum account saved locally (`QiskitRuntimeService(channel="ibm_cloud")`); no credential is stored in this repository.

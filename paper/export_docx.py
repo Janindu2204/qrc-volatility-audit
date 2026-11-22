@@ -11,7 +11,7 @@ from docx.oxml.ns import qn
 HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE.parents[2] / "Docs/details/IEEE Acess Q1/Access-Template-2024.docx"
 TEX = (HERE / "main.tex").read_text()
-ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"]
 
 
 def strip_comments(s):
@@ -36,7 +36,7 @@ bib = re.findall(r"\\bibitem\{([^}]*)\}(.*?)(?=\\bibitem|\\end\{thebibliography\
 
 # --- numbering for \ref and \eqref --------------------------------------------------------------
 labels, sec, sub, fig, tab, eq, app, in_app, last = {}, 0, 0, 0, 0, 0, 0, False, None
-for m in re.finditer(r"\\(appendices)\b|\\(section\*?|subsection|label)\{([^}]*)\}|\\begin\{(figure\*?|table|equation)\}", body):
+for m in re.finditer(r"\\(appendices)\b|\\(section\*?|subsection|label)\{([^}]*)\}|\\begin\{(figure\*?|table\*?|equation)\}", body):
     kind = m.group(1) or m.group(2) or m.group(4)
     if kind == "appendices":
         in_app = True
@@ -49,7 +49,7 @@ for m in re.finditer(r"\\(appendices)\b|\\(section\*?|subsection|label)\{([^}]*)
         sub += 1; last = f"{ROMAN[sec - 1]}-{chr(64 + sub)}"
     elif kind in ("figure", "figure*"):
         fig += 1; last = str(fig)
-    elif kind == "table":
+    elif kind in ("table", "table*"):
         tab += 1; last = ROMAN[tab - 1]
     elif kind == "equation":
         eq += 1; last = str(eq)
@@ -86,6 +86,7 @@ app_titles = iter("ABCDEFG")
 tail = re.sub(r"\\section\{(.*)\}", lambda m: "\\section*{Appendix " + next(app_titles) + ". " + m.group(1) + "}", tail)
 body = re.sub(r"\\section\*\{(.*)\}", r"\\section*{QQUQQ\1}", head + tail)
 body = body.replace(".pdf}", ".png}")
+body = body.replace("\\begin{table*}", "\\begin{table}").replace("\\end{table*}", "\\end{table}")
 refs = "\n\\section*{QQUQQReferences}\n" + "\n\n".join(f"QQRQQ {t.strip()}" for _, t in bib)
 body = body + refs
 
@@ -245,7 +246,7 @@ def before(text, style, bold_label=None, sup=None):
 before("Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.", "DOP")
 before("Digital Object Identifier 10.1109/ACCESS.2024.Doi Number", "DOI")
 before(plain(title), "Paper Title")
-before("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA1 AND MANINDA EDIRISOORIYA1", "AU")
+before("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA1, MANINDA EDIRISOORIYA1, AND ACHALA APONSO1", "AU")
 before("1Informatics Institute of Technology, Colombo, Sri Lanka, in collaboration with the University of Westminster, London, U.K.", "PI")
 before("Corresponding author: S. J. I. Sandanayaka (e-mail: janindu.20232270@iit.ac.lk).", "PI")
 before("This work did not receive any specific funding.", "footnote text")
@@ -253,7 +254,7 @@ before(plain(abstract), "Abstract", bold_label="ABSTRACT")
 last_front = before(plain(keywords), "IT", bold_label="INDEX TERMS")
 # superscript affiliation markers
 au = D.paragraphs[3]; au.clear()
-for txt, sup in (("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA", False), ("1", True), (" AND MANINDA EDIRISOORIYA", False), ("1", True)):
+for txt, sup in (("SANDANAYAKAGE JANINDU INDIRA SANDANAYAKA", False), ("1", True), (", MANINDA EDIRISOORIYA", False), ("1", True), (", AND ACHALA APONSO", False), ("1", True)):
     r = au.add_run(txt); r.font.superscript = sup
 pi = D.paragraphs[4]; pi.clear()
 r = pi.add_run("1"); r.font.superscript = True
@@ -265,6 +266,12 @@ pPr.append(copy.deepcopy(tpl_sect[0]))
 body_el = D.element.body
 old = body_el.find(qn("w:sectPr"))
 body_el.replace(old, copy.deepcopy(tpl_sect[1]))
+
+# author biographies (after the references), in the template's AU_Bios style with the name in bold capitals
+for name, text in re.findall(r"\\begin\{IEEEbiography(?:nophoto)?\}(?:\[[^\]]*\])?\{([^}]*)\}(.*?)\\end\{IEEEbiography(?:nophoto)?\}", tex, re.S):
+    bp = D.add_paragraph(style=D.styles["AU_Bios"])
+    bp.add_run(plain(name).upper() + " ").bold = True
+    bp.add_run(" ".join(plain(text).split()))
 
 D.core_properties.title = plain(title)
 D.save(str(HERE / "main.docx"))

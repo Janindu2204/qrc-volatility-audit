@@ -6,7 +6,7 @@ Archived release v1.0: doi:10.5281/zenodo.24398016 (all versions: doi:10.5281/ze
 
 Code, registrations, results and manuscript for the paper:
 
-> S. J. I. Sandanayaka, "Does a Quantum Reservoir Computing Advantage in Volatility Forecasting Survive Honest Evaluation? A
+> S. J. I. Sandanayaka, M. Edirisooriya and A. Aponso, "Does a Quantum Reservoir Computing Advantage in Volatility Forecasting Survive Honest Evaluation? A
 > Pre-Registered Audit" (manuscript, 2026).
 
 The audited study is Q. Li, C. Mukhopadhyay, A. Bayat, A. Habibnia, "Quantum reservoir computing for realized volatility
